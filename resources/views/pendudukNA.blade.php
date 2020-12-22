@@ -9,16 +9,18 @@
                 <h4 class="card-title">
                 Penduduk pada nagari tertentu
                 </h4>
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <select class="form-control" id="nagari" name="nagari">
-                            <option value="">Pilih Nagari</option>
-                        </select>
+                <form action="/pendudukNA/pilihNA" method="get">
+                    <div class="form-row"> 
+                        <div class="form-group col-md-3">
+                            <select class="form-control" id="nagari" name="nagari">
+                                <option value="">Pilih Nagari</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="submit" value="cari" class="btn btn-success">
+                        </div>
                     </div>
-                    <div class="form-group col-md-3">
-                        <a href="" type="submit" class="btn btn-success">Pilih</a>
-                    </div>
-                </div>
+                </form>
             </div>
 
             <div class="card-body">
@@ -26,7 +28,7 @@
                     <thead>
                     <tr>
                         <th>NIK</th>
-                        <th>Nama</th>
+                        <th>Asal Nagari</th>
                         <th>Tanggal Lahir</th>
                         <th>Jenis Kelamin</th>
                         <th>Agama</th>

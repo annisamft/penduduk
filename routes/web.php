@@ -37,4 +37,6 @@ Route::get('/pendudukUP', 'LaporanController@pendudukUP');
 Route::get('/pendudukNA', 'LaporanController@pendudukNA');
 Route::get('/pendudukLV', 'LaporanController@pendudukLV');
 Route::get('/listNagari', 'LaporanController@listNagari');
+Route::get('/pendudukNA/pilihNA', 'LaporanController@pilihNagari');
+Route::get('/pendudukLV/pilihLV', 'LaporanController@pilihNagariLV');
 

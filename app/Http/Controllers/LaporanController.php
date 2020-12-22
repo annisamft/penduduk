@@ -20,7 +20,10 @@ class LaporanController extends Controller
     }
 
     public function pendudukNA(){
-        //$penduduk = Penduduk::with('kartu_keluarga')->where('jorong_id','=',1)->get();
+        $penduduk = Penduduk::leftJoin('kartu_keluarga','keluarga_id','kartu_keluarga.id')
+        ->leftJoin('jorong','jorong_id','jorong.id')
+        ->leftJoin('nagari','nagari_id','nagari.id')
+        ->get();
         //dd($penduduk);
         return view('pendudukNA', compact('penduduk'));
     }
@@ -31,7 +34,38 @@ class LaporanController extends Controller
         return json_encode($na);
     }
 
+    public function pilihNagari(Request $request){
+        $pilih = $request->nagari;
+
+        $penduduk = Penduduk::leftJoin('kartu_keluarga','keluarga_id','kartu_keluarga.id')
+        ->leftJoin('jorong','jorong_id','jorong.id')
+        ->leftJoin('nagari','nagari_id','nagari.id')
+        ->where('nagari.id','like',"%".$pilih."%")
+        ->get();
+
+        return view('pendudukNA', compact('penduduk'));
+    }
+
+    public function pilihNagariLV(Request $request){
+        $pilih = $request->nagari;
+
+        $penduduk = Penduduk::leftJoin('kartu_keluarga','keluarga_id','kartu_keluarga.id')
+        ->leftJoin('jorong','jorong_id','jorong.id')
+        ->leftJoin('nagari','nagari_id','nagari.id')
+        ->where('level_pendidikan_id','<=', 'LV-03')
+        ->where('nagari.id','like',"%".$pilih."%")
+        ->get();
+
+        return view('pendudukLV', compact('penduduk'));
+    }
+
     public function pendudukLV(){
-        return view('pendudukLV');
+        $penduduk = Penduduk::leftJoin('kartu_keluarga','keluarga_id','kartu_keluarga.id')
+        ->leftJoin('jorong','jorong_id','jorong.id')
+        ->leftJoin('nagari','nagari_id','nagari.id')
+        ->where('level_pendidikan_id','<=', 'LV-03')
+        ->get();
+        //dd($penduduk);
+        return view('pendudukLV', compact('penduduk'));
     }
 }
